@@ -1,16 +1,12 @@
 import { HttpResponseBase, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import {
-  Response,
-  ErrorResponse,
-  SuccessResponse,
-} from './response';
+import { Response, ErrorResponse, SuccessResponse } from './response';
 
 export abstract class ResponseFactory {
-  showResponse = (response: HttpResponseBase) => {
-    const feedback = this.createResponse(response);
-    feedback.show();
+  showResponse = (httpResponse: HttpResponseBase) => {
+    const response = this.createResponse(httpResponse);
+    response.show();
   };
 
   abstract createResponse<T extends any>(response: HttpResponseBase): Response;
@@ -24,13 +20,7 @@ export class NotificationResponseFactory extends ResponseFactory {
 
   createResponse<T extends any>(response: HttpResponseBase): Response {
     return response instanceof HttpErrorResponse
-      ? new ErrorResponse(
-          this.messageService,
-          response.error.description
-        )
-      : new SuccessResponse(
-          this.messageService,
-          'Request is successful'
-        );
+      ? new ErrorResponse(this.messageService, response.error.description)
+      : new SuccessResponse(this.messageService, 'Request is successful');
   }
 }
