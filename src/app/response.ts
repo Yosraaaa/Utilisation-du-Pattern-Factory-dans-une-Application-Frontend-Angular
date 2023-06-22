@@ -4,22 +4,25 @@ export abstract class Response {
   abstract show(): void;
 }
 
-export abstract class NotificationResponse extends Response {
+export class ErrorResponse extends Response {
   constructor(
     protected messageService: NzMessageService,
     protected message: string
   ) {
     super();
   }
-}
-
-export class ErrorMessageFeedback extends NotificationResponse {
   show() {
     this.messageService.error(this.message);
   }
 }
 
-export class SuccessMessageFeedback extends NotificationResponse {
+export class SuccessResponse extends Response {
+  constructor(
+    protected messageService: NzMessageService,
+    protected message: string
+  ) {
+    super();
+  }
   show() {
     this.messageService.success(this.message);
   }

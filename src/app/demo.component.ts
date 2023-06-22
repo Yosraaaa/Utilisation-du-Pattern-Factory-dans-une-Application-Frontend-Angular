@@ -22,7 +22,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
   providers: [
     {
       provide: ResponseFactory,
-      useFactory: NotificationResponseFactory,
+      useClass: NotificationResponseFactory,
     },
   ],
 })

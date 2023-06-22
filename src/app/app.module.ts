@@ -28,11 +28,5 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   declarations: [AppComponent, DemoComponent],
   bootstrap: [AppComponent],
-  providers: [
-    {
-      provide: ResponseFactory,
-      useClass: NotificationResponseFactory,
-    },
-  ],
 })
 export class AppModule {}

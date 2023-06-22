@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {
   Response,
-  ErrorMessageFeedback,
-  SuccessMessageFeedback,
+  ErrorResponse,
+  SuccessResponse,
 } from './response';
 
 export abstract class ResponseFactory {
@@ -16,6 +16,7 @@ export abstract class ResponseFactory {
   abstract createResponse<T extends any>(response: HttpResponseBase): Response;
 }
 
+@Injectable()
 export class NotificationResponseFactory extends ResponseFactory {
   constructor(private messageService: NzMessageService) {
     super();
@@ -23,11 +24,11 @@ export class NotificationResponseFactory extends ResponseFactory {
 
   createResponse<T extends any>(response: HttpResponseBase): Response {
     return response instanceof HttpErrorResponse
-      ? new ErrorMessageFeedback(
+      ? new ErrorResponse(
           this.messageService,
           response.error.description
         )
-      : new SuccessMessageFeedback(
+      : new SuccessResponse(
           this.messageService,
           'Request is successful'
         );
