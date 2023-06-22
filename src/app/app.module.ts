@@ -3,10 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { DemoComponent } from './demo.component';
-import {
-  ResponseFactory,
-  NotificationResponseFactory,
-} from './response.factory';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule, NzMessageServiceModule } from 'ng-zorro-antd/message';
 import {
